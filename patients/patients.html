@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Patients</title>
     <link rel="stylesheet" href="../patients/styles.css">
+    <link rel="stylesheet" href="../agenda/styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -63,6 +64,25 @@
 </head>
 
 <body>
+    <header>
+        <nav id="login-nav">
+            <img src="./images/login-logo.png">
+            <div class="menu">
+                <a href="#dashboard">Dashboard</a>
+                <a href="#appointments">Appointments</a>
+                <a class="selected" href="#patients">Patients</a>
+                <div class="search-container">
+                    <form action="/action_page.php">
+                      <input type="text" placeholder="Search.." name="search">
+                    </form>
+                </div>
+                <div class="icons">
+                    <img id="bell" src="./images/bell.png" />
+                    <img id="settings" src="./images/settings.png" />
+                </div>
+            </div>
+        </nav>
+    </header>
     <button id="openModalBtn">Add Patient</button>
     <!--Tabla para la db-->
     <main class="table">
