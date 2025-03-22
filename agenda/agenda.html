@@ -4,153 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agenda</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-
-        .agenda-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .agenda-container h1 {
-            margin-bottom: 20px;
-        }
-
-        .agenda-container h2 {
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-
-        .agenda-container .week {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .agenda-container .day {
-            flex: 1;
-            margin: 0 10px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            text-align: center;
-        }
-
-        .agenda-container .day p {
-            margin: 5px 0;
-        }
-
-        .agenda-container .day .more {
-            color: #007bff;
-            cursor: pointer;
-        }
-
-        .agenda-container hr {
-            border: 0;
-            height: 1px;
-            background: #ccc;
-            margin: 20px 0;
-        }
-
-        .agenda-container .sidebar {
-            margin-top: 20px;
-        }
-
-        .agenda-container .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .agenda-container .sidebar ul li {
-            margin: 10px 0;
-        }
-
-        .agenda-container .sidebar ul li a {
-            color: #007bff;
-            text-decoration: none;
-        }
-    </style>
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <div class="agenda-container">
-        <h1>February 2025</h1>
-
-        <div class="week">
-            <div class="day">
-                <h2>Mon</h2>
-                <p>28</p>
-                <p>Check up</p>
-                <p class="more">+12 more</p>
+    <header>
+        <nav id="login-nav">
+            <img src="./images/login-logo.png">
+            <div class="menu">
+                <a href="#dashboard">Dashboard</a>
+                <a class ="selected" href="#appointments">Appointments</a>
+                <a href="#patients">Patients</a>
+                <div class="search-container">
+                    <form action="/action_page.php">
+                      <input type="text" placeholder="Search.." name="search">
+                    </form>
+                </div>
+                <div class="icons">
+                    <img id="bell" src="./images/bell.png" />
+                    <img id="settings" src="./images/settings.png" />
+                </div>
             </div>
-
-            <div class="day">
-                <h2>Tue</h2>
-                <p>30</p>
-                <p>6</p>
-                <p>Check up</p>
-                <p class="more">+12 more</p>
-            </div>
-
-            <div class="day">
-                <h2>Wed</h2>
-                <p>31</p>
-                <p>7</p>
-                <p>14</p>
-                <p>Check up</p>
-                <p class="more">+12 more</p>
-            </div>
-
-            <div class="day">
-                <h2>Thu</h2>
-                <p>1</p>
-                <p>8</p>
-                <p>Check up</p>
-                <p class="more">+12 more</p>
-            </div>
-
-            <div class="day">
-                <h2>Fri</h2>
-                <p>2</p>
-                <p>Check up</p>
-                <p class="more">+12 more</p>
-            </div>
-
-            <div class="day">
-                <h2>Sat</h2>
-                <p>3</p>
-                <p>10</p>
-                <p>17</p>
-                <p>24</p>
-                <p>Diagnostic</p>
-                <p class="more">+12 more</p>
-            </div>
-
-            <div class="day">
-                <h2>Sun</h2>
-                <p>4</p>
-                <p>Check up</p>
-                <p class="more">+12 more</p>
-            </div>
-        </div>
-
-        <hr>
-
-        <div class="sidebar">
-            <h3>FEDICAL STAR</h3>
-            <ul>
-                <li><a href="#">Q. Search</a></li>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Appointments</a></li>
-                <li><a href="#">Patients</a></li>
-            </ul>
+        </nav>
+    </header>
+    <div class="main-container">
+        <div class="agenda-container">
+            <h1 id="month">February</h1>
+            <label for="month-select">Select Month:</label>
+            <select id="month-select">
+                <option value="0">January</option>
+                <option value="1">February</option>
+                <option value="2">March</option>
+                <option value="3">April</option>
+                <option value="4">May</option>
+                <option value="5">June</option>
+                <option value="6">July</option>
+                <option value="7">August</option>
+                <option value="8">September</option>
+                <option value="9">October</option>
+                <option value="10">November</option>
+                <option value="11">December</option>
+            </select>
+            
+            <div id="calendar"></div>
         </div>
     </div>
+    <script src="./script.js"></script>
 </body>
 </html>
