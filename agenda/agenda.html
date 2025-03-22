@@ -7,6 +7,25 @@
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
+    <header>
+        <nav id="login-nav">
+            <img src="./images/login-logo.png">
+            <div class="menu">
+                <a href="#dashboard">Dashboard</a>
+                <a class ="selected" href="#appointments">Appointments</a>
+                <a href="#patients">Patients</a>
+                <div class="search-container">
+                    <form action="/action_page.php">
+                      <input type="text" placeholder="Search.." name="search">
+                    </form>
+                </div>
+                <div class="icons">
+                    <img id="bell" src="./images/bell.png" />
+                    <img id="settings" src="./images/settings.png" />
+                </div>
+            </div>
+        </nav>
+    </header>
     <div class="main-container">
         <div class="agenda-container">
             <h1 id="month">February</h1>
