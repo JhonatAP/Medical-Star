@@ -1,164 +1,203 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Medical Star Dashboard</title>
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <div class="dashboard-container">
-        <h1>Welcome</h1>
-        <h2>Dr. Andrew Taylor</h2>
-        <p>General Practitioner</p>
-        <hr>
-
-        <h3>2014</h3>
-        <h4>Prescriptions</h4>
-
-        <h3>Appointments Overview</h3>
-        <ul>
-            <li>Male</li>
-            <li>Child</li>
-            <li>Female</li>
-            <li>Other</li>
-        </ul>
-        <hr>
-
-        <div class="appointments">
-            <h3>Appointments</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Upcoming</th>
-                        <th>Completed</th>
-                        <th>Canceled</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Today</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="appointment">
-                <p><strong>Emily Anderson</strong></p>
-                <p>Patient</p>
-                <p>08:00 AM</p>
-                <div class="actions">
-                    <button class="reschedule">Reschedule</button>
-                </div>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <img src="/api/placeholder/40/40" alt="Medical Star Logo">
+            <span>MEDICAL STAR</span>
+        </div>
+        
+        <nav class="nav">
+            <a href="#" class="nav-item">Dashboard</a>
+            <a href="#" class="nav-item active">Appoiments</a>
+            <a href="#" class="nav-item">Patients</a>
+        </nav>
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+        </div>
+        
+        <div class="user-actions">
+            <div class="notification">
+                <span>🔔</span>
+                <span class="notification-badge">4</span>
             </div>
-
-            <div class="appointment">
-                <p><strong>Jamb Jackson</strong></p>
-                <p>Patient</p>
-                <p>10:30 AM</p>
-                <div class="actions">
-                    <button class="reschedule">Reschedule</button>
-                </div>
-            </div>
-
-            <div class="appointment">
-                <p><strong>Mather Martinez</strong></p>
-                <p>Patient</p>
-                <p>03:00 PM</p>
-                <div class="actions">
-                    <button class="cancel">Cancel</button>
-                </div>
-            </div>
-
-            <div class="appointment">
-                <p><strong>Pending for confirmation</strong></p>
-                <p>Matthew Martinez</p>
-                <p>Patient</p>
-                <p>25/01/2020</p>
-                <div class="actions">
-                    <button class="reschedule">Reschedule</button>
-                </div>
+            <span>⚙️</span>
+            <div class="user-avatar">
+                <img src="/api/placeholder/35/35" alt="User Avatar">
             </div>
         </div>
-        <hr>
-
-        <h3>February 2025</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Mon</th>
-                    <th>Tue</th>
-                    <th>Wed</th>
-                    <th>Thu</th>
-                    <th>Fri</th>
-                    <th>Sat</th>
-                    <th>Sun</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>29</td>
-                    <td>30</td>
-                    <td>31</td>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>6</td>
-                    <td>7</td>
-                    <td>8</td>
-                    <td>9</td>
-                    <td>10</td>
-                    <td>11</td>
-                </tr>
-                <tr>
-                    <td>12</td>
-                    <td>13</td>
-                    <td>14</td>
-                    <td>15</td>
-                    <td>16</td>
-                    <td>17</td>
-                    <td>18</td>
-                </tr>
-                <tr>
-                    <td>19</td>
-                    <td>20</td>
-                    <td>21</td>
-                    <td>22</td>
-                    <td>23</td>
-                    <td>24</td>
-                    <td>25</td>
-                </tr>
-                <tr>
-                    <td>26</td>
-                    <td>27</td>
-                    <td>28</td>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                </tr>
-            </tbody>
-        </table>
-        <hr>
-
-        <div class="create-prescription">
-            <h3>Create prescription</h3>
-            <div class="patient-info">
-                <p><strong>Divia Miller</strong></p>
-                <p>New patient</p>
-                <p>Details Appointment</p>
+    </header>
+    
+    <!-- Main content -->
+    <main class="main-content">
+        <!-- Welcome card -->
+        <section class="card welcome-card">
+            <div>
+                <h2>Welcome</h2>
+                <div class="doctor-info">
+                    <div class="doctor-avatar">
+                        <img src="/api/placeholder/100/100" alt="Dr. Andrew Taylor">
+                    </div>
+                    <h3 class="doctor-name">Dr. Andrew Taylor</h3>
+                    <p class="doctor-role">General Practitioner</p>
+                </div>
             </div>
-            <div class="actions">
-                <button class="new-prescription">+ New prescription</button>
-                <button class="unsave">Unsave</button>
-                <button class="active">✓ Active</button>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <span>📋</span>
+                    <span class="stat-number">204</span>
+                    <span class="stat-label">Prescriptions</span>
+                </div>
+                <div class="stat-item">
+                    <span>👨‍👩‍👧‍👦</span>
+                    <span class="stat-number">147</span>
+                    <span class="stat-label">Patients</span>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
+        
+        <!-- Appointments card -->
+        <section class="card appointments-card">
+            <h2 class="appointments-header">Appointments</h2>
+            
+            <!-- <div class="tab-controls">
+                <button class="tab-btn active">Upcoming</button>
+                <button class="tab-btn">Completed</button>
+                <button class="tab-btn">Canceled</button>
+            </div> -->
+            
+            <div class="appointment-section">
+                <h3 class="section-title">Today</h3>
+                
+                <div class="appointment-item">
+                    <div class="patient-avatar avatar-e">E</div>
+                    <div class="patient-info">
+                        <div class="patient-name">Emily Anderson</div>
+                        <div class="patient-type">Patient</div>
+                    </div>
+                    <div class="appointment-status status-confirmed">Confirmed</div>
+                </div>
+                
+                <div class="appointment-time">⏱️ 08:00 AM</div>
+                <div class="appointment-date">📅 25/01/2025</div>
+                
+                <div class="appointment-actions">
+                    <button class="reschedule-btn">Reschedule</button>
+                    <button class="call-btn">Join call</button>
+                </div>
+                
+                <div class="appointment-item">
+                    <div class="patient-avatar avatar-j">J</div>
+                    <div class="patient-info">
+                        <div class="patient-name">Jacob Jackson</div>
+                        <div class="patient-type">Patient</div>
+                    </div>
+                    <div class="appointment-status status-confirmed">Confirmed</div>
+                </div>
+                
+                <div class="appointment-time">⏱️ 10:30 AM</div>
+                <div class="appointment-date">📅 25/01/2025</div>
+                
+                <div class="appointment-actions">
+                    <button class="reschedule-btn">Reschedule</button>
+                    <button class="call-btn">Join call</button>
+                </div>
+            </div>
+            
+            <div class="appointment-section">
+                <h3 class="section-title">Pending for confirmation</h3>
+                
+                <div class="appointment-item">
+                    <div class="patient-avatar avatar-m">M</div>
+                    <div class="patient-info">
+                        <div class="patient-name">Matthew Martinez</div>
+                        <div class="patient-type">Patient</div>
+                    </div>
+                    <div class="appointment-status status-pending">Pending</div>
+                </div>
+                
+                <div class="appointment-time">⏱️ 03:00 PM</div>
+                <div class="appointment-date">📅 25/01/2020</div>
+                
+                <div class="appointment-actions">
+                    <button class="cancel-btn">Cancel</button>
+                    <button class="reschedule-btn">Reschedule</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Calendar card -->
+        <section class="card calendar-card">
+            <div class="calendar-header">
+                <h2 class="month-title">February 2025</h2>
+                <div class="month-nav">
+                    <button class="month-nav-btn">◀</button>
+                    <button class="month-nav-btn">▶</button>
+                </div>
+            </div>
+            
+            <div class="calendar-grid">
+            </div>
+        </section>
+        
+        <!-- Prescription card -->
+        <section class="card prescription-card">
+            <div class="prescription-header">
+                <h2 class="prescription-title">Create prescription</h2>
+                <div class="month-nav">
+                    <button class="month-nav-btn">◀</button>
+                    <button class="month-nav-btn">▶</button>
+                </div>
+            </div>
+            
+            <div class="patient-selector">
+                <a href="#" class="patient-link">Olivia Miller</a>
+                <span class="patient-status">New patient</span>
+            </div>
+            
+            <button class="action-btn">Details Appoiment</button>
+            
+            <div class="prescription-actions">
+                <button class="action-btn add-btn">+ New prescription</button>
+                <button class="action-btn save-btn">Unsave</button>
+                <button class="action-btn archive-btn">✓ Archive</button>
+            </div>
+        </section>
+        
+        <!-- Overview card -->
+        <section class="card overview-card">
+            <h2 class="overview-header">Appoiments Overview</h2>
+            
+            <div class="gender-legend">
+                <div class="gender-item">
+                    <div class="gender-dot male-dot"></div>
+                    <span>Male</span>
+                </div>
+                <div class="gender-item">
+                    <div class="gender-dot child-dot"></div>
+                    <span>Child</span>
+                </div>
+                <div class="gender-item">
+                    <div class="gender-dot female-dot"></div>
+                    <span>Female</span>
+                </div>
+                <div class="gender-item">
+                    <div class="gender-dot other-dot"></div>
+                    <span>Other</span>
+                </div>
+            </div>
+            
+            <div class="pie-chart"></div>
+        </section>
+    </main>
 </body>
 </html>
