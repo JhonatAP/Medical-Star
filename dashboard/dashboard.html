@@ -54,12 +54,12 @@
             <div class="stats">
                 <div class="stat-item">
                     <span>📋</span>
-                    <span class="stat-number">204</span>
+                    <span class="stat-number">0</span>
                     <span class="stat-label">Prescriptions</span>
                 </div>
                 <div class="stat-item">
                     <span>👨‍👩‍👧‍👦</span>
-                    <span class="stat-number">147</span>
+                    <span class="stat-number">0</span>
                     <span class="stat-label">Patients</span>
                 </div>
             </div>
@@ -68,13 +68,6 @@
         <!-- Appointments card -->
         <section class="card appointments-card">
             <h2 class="appointments-header">Appointments</h2>
-            
-            <!-- <div class="tab-controls">
-                <button class="tab-btn active">Upcoming</button>
-                <button class="tab-btn">Completed</button>
-                <button class="tab-btn">Canceled</button>
-            </div> -->
-            
             <div class="appointment-section">
                 <h3 class="section-title">Today</h3>
                 
@@ -167,7 +160,7 @@
             <button class="action-btn">Details Appoiment</button>
             
             <div class="prescription-actions">
-                <button class="action-btn add-btn">+ New prescription</button>
+                <button class="action-btn add-btn toggle-modal">+ New prescription</button>
                 <button class="action-btn save-btn">Unsave</button>
                 <button class="action-btn archive-btn">✓ Archive</button>
             </div>
@@ -198,6 +191,295 @@
             
             <div class="pie-chart"></div>
         </section>
+        <!-- Backdrop and Modal -->
+    <div class="backdrop" id="modal-backdrop">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Add prescription</h2>
+                <button class="close-btn" id="close-modal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-section">
+                    <h3 class="form-title">Medical Prescription</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-control" value="Oliver">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Date of birth</label>
+                            <div class="input-icon-wrapper">
+                                <input type="text" class="form-control" value="October 25, 2000">
+                                <span class="input-icon">📅</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Date of check in</label>
+                            <div class="input-icon-wrapper">
+                                <input type="text" class="form-control" value="March 01, 2025">
+                                <span class="input-icon">📅</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-control" value="Miller">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Age</label>
+                            <input type="text" class="form-control" value="25">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Gender</label>
+                            <div class="dropdown">
+                                <select class="dropdown-select">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Other</option>
+                                </select>
+                                <span class="dropdown-icon">▼</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Mobile Number</label>
+                            <div class="input-icon-wrapper">
+                                <input type="text" class="form-control with-icon">
+                                <span class="input-icon">📱</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Marital Status</label>
+                            <div class="dropdown">
+                                <select class="dropdown-select">
+                                    <option>Single</option>
+                                    <option>Married</option>
+                                    <option>Divorced</option>
+                                    <option>Widowed</option>
+                                </select>
+                                <span class="dropdown-icon">▼</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <div class="input-icon-wrapper">
+                                <input type="email" class="form-control with-icon">
+                                <span class="input-icon">✉️</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Blood group</label>
+                            <div class="dropdown">
+                                <select class="dropdown-select">
+                                    <option>O+</option>
+                                    <option>O-</option>
+                                    <option>A+</option>
+                                    <option>A-</option>
+                                    <option>B+</option>
+                                    <option>B-</option>
+                                    <option>AB+</option>
+                                    <option>AB-</option>
+                                </select>
+                                <span class="dropdown-icon">▼</span>
+                                <span class="required-indicator">●</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Address</label>
+                            <div class="input-icon-wrapper">
+                                <input type="text" class="form-control with-icon">
+                                <span class="input-icon">📍</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Consulting Doctor</label>
+                            <input type="text" class="form-control" value="Dr. Andrew Taylor">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Weight</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Height</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Injury/Condition</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Allergies</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">General indications</label>
+                        <textarea class="form-textarea"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tratament</label>
+                        <textarea class="form-textarea"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-modal">Cancel</button>
+                <button class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom calendar for date inputs -->
+    <div class="calendar" id="date-calendar" style="display: none;">
+        <div class="calendar-header">
+            <div class="calendar-month">October 2002</div>
+            <div class="calendar-nav">
+                <button class="calendar-nav-btn">◀</button>
+                <button class="calendar-nav-btn">▶</button>
+            </div>
+        </div>
+        <div class="calendar-days">
+            <div class="calendar-day-header">M</div>
+            <div class="calendar-day-header">T</div>
+            <div class="calendar-day-header">W</div>
+            <div class="calendar-day-header">T</div>
+            <div class="calendar-day-header">F</div>
+            <div class="calendar-day-header">S</div>
+            <div class="calendar-day-header">S</div>
+            
+            <div class="calendar-day other-month">29</div>
+            <div class="calendar-day other-month">30</div>
+            <div class="calendar-day other-month">31</div>
+            <div class="calendar-day current-month">1</div>
+            <div class="calendar-day current-month">2</div>
+            <div class="calendar-day current-month">3</div>
+            <div class="calendar-day current-month">4</div>
+            
+            <div class="calendar-day current-month">5</div>
+            <div class="calendar-day current-month">6</div>
+            <div class="calendar-day current-month">7</div>
+            <div class="calendar-day current-month">8</div>
+            <div class="calendar-day current-month">9</div>
+            <div class="calendar-day current-month">10</div>
+            <div class="calendar-day current-month">11</div>
+            
+            <div class="calendar-day current-month">12</div>
+            <div class="calendar-day current-month">13</div>
+            <div class="calendar-day current-month">14</div>
+            <div class="calendar-day current-month">15</div>
+            <div class="calendar-day current-month">16</div>
+            <div class="calendar-day current-month">17</div>
+            <div class="calendar-day current-month">18</div>
+            
+            <div class="calendar-day current-month">19</div>
+            <div class="calendar-day current-month">20</div>
+            <div class="calendar-day current-month">21</div>
+            <div class="calendar-day current-month">22</div>
+            <div class="calendar-day current-month">23</div>
+            <div class="calendar-day current-month">24</div>
+            <div class="calendar-day current-month highlighted">25</div>
+            
+            <div class="calendar-day current-month">26</div>
+            <div class="calendar-day current-month">27</div>
+            <div class="calendar-day current-month">28</div>
+            <div class="calendar-day other-month">1</div>
+            <div class="calendar-day other-month">2</div>
+            <div class="calendar-day other-month">3</div>
+            <div class="calendar-day other-month">4</div>
+        </div>
+    </div>
+
+    <script>
+        // DOM elements
+        const modalBackdrop = document.getElementById('modal-backdrop');
+        const toggleButton = document.querySelector('.toggle-modal');
+        const closeButton = document.getElementById('close-modal');
+        const cancelButton = document.getElementById('cancel-modal');
+        const dateInputs = document.querySelectorAll('.form-control[value*="2000"], .form-control[value*="2025"]');
+        const calendar = document.getElementById('date-calendar');
+
+        // Show modal function
+        function showModal() {
+            modalBackdrop.style.display = 'flex';
+            // Add animation class if desired
+            setTimeout(() => {
+                modalBackdrop.style.opacity = '1';
+            }, 10);
+        }
+
+        // Hide modal function
+        function hideModal() {
+            modalBackdrop.style.opacity = '0';
+            setTimeout(() => {
+                modalBackdrop.style.display = 'none';
+                // Hide calendar if it's open
+                calendar.style.display = 'none';
+            }, 300);
+        }
+
+        // Toggle calendar
+        function toggleCalendar(e) {
+            const inputRect = e.target.getBoundingClientRect();
+            
+            // Position the calendar under the input
+            calendar.style.top = `${inputRect.bottom + window.scrollY}px`;
+            calendar.style.left = `${inputRect.left + window.scrollX}px`;
+            
+            // Toggle display
+            if (calendar.style.display === 'none' || !calendar.style.display) {
+                calendar.style.display = 'block';
+            } else {
+                calendar.style.display = 'none';
+            }
+        }
+
+        // Event listeners
+        toggleButton.addEventListener('click', showModal);
+        closeButton.addEventListener('click', hideModal);
+        cancelButton.addEventListener('click', hideModal);
+
+        // Close when clicking outside the modal
+        modalBackdrop.addEventListener('click', (e) => {
+            if (e.target === modalBackdrop) {
+                hideModal();
+            }
+        });
+
+        // Date input calendar toggle
+        dateInputs.forEach(input => {
+            input.addEventListener('click', toggleCalendar);
+        });
+
+        // Calendar day selection
+        const calendarDays = document.querySelectorAll('.calendar-day');
+        calendarDays.forEach(day => {
+            day.addEventListener('click', () => {
+                // In a real app, you would update the active input with the selected date
+                // For demo purposes, just hide the calendar
+                calendar.style.display = 'none';
+            });
+        });
+
+        // Auto-open modal when page loads for demo
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(showModal, 500);
+        });
+    </script>
     </main>
 </body>
 </html>
