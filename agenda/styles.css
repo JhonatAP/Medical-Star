@@ -9,6 +9,105 @@ body {
     align-items: center;
     height: 100vh;
 }
+/* Header Styles*/
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+    margin-right: 5px;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+}
+
+.nav-item.active {
+    color: #1976d2;
+    border-bottom: 2px solid #1976d2;
+}
+
+.search-bar {
+    position: relative;
+    width: 300px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 8px 12px;
+    padding-left: 35px;
+    border-radius: 20px;
+    border: none;
+    background-color: #f0f0f0;
+}
+
+.search-bar::before {
+    content: "🔍";
+    position: absolute;
+    left: 12px;
+    top: 8px;
+    color: #888;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.notification {
+    position: relative;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #f44336;
+    color: white;
+    font-size: 10px;
+    padding: 2px 5px;
+    border-radius: 50%;
+}
+
+.user-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #e0e0e0;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Main Container */
 
 .main-container {
     width: 90%;
@@ -18,120 +117,6 @@ body {
     align-items: center;
     background-color: #007bff;
     border-radius: 8px;
-}
-
-#login-nav {
-    position: absolute;
-    top: 0;
-    left: -1px; 
-    width: 100%;
-    height: 56px; 
-    background: #FFFFFFFF; /* white */
-    border-radius: 0px; 
-    box-shadow: 0px 0px 1px #171a1f12, 0px 0px 2px #171a1f1F; /* shadow-xs */
-    overflow: hidden;
-}
-
-#login-nav .menu {
-    position: absolute; 
-    top: 2px; 
-    left: 160px; 
-    width: 409px; 
-    height: 52px; 
-    display: flex; 
-    align-items: center; 
-    font-family: Inter; /* Body */
-    font-size: 14px; 
-    line-height: 22px; 
-    font-weight: 400; 
-    opacity: 1;
-}
-
-#login-nav .menu a {
-    padding: 15px 12px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    color: #565D6DFF; /* neutral-600 */
-    background: rgba(0, 0, 0, 0); /* transparent */
-    border-radius: 0px; 
-    cursor: pointer; 
-    white-space: nowrap
-}
-
-#login-nav .menu .selected {
-    position: relative; 
-    font-weight: 700; 
-    color: #2987C2FF; /* primary-500 */
-    background: rgba(0, 0, 0, 0); /* transparent */
-}
-
-#login-nav a:hover {
-    color: #2987C2FF; /* primary-500 */
-    background: rgba(0, 0, 0, 0.12); /**/
-}
-
-#login-nav a.active {
-    background-color: #4CAF50;
-    color: white;
-}
-
-#login-nav img {
-    position: absolute; 
-    top: 2px; 
-    left: 24px; 
-    width: 116px; 
-    height: 52px; 
-    border-radius: 6px; /* border-m */
-}
-
-
-/* Style the input container */
-#login-nav .search-container {
-    position: absolute;
-    right: -500px;
-}
-
-/* Style the input field inside the navbar */
-#login-nav input[type=text] {
-padding: 6px;
-margin-top: 8px;
-font-size: 17px;
-border: none;
-}
-
-/* Style the button inside the input container */
-#login-nav .search-container button {
-float: right;
-padding: 6px;
-margin-top: 8px;
-margin-right: 16px;
-background: #ddd;
-font-size: 14px;
-border: none;
-cursor: pointer;
-}
-
-#login-nav .search-container button:hover {
-background: #ccc;
-}
-
-#login-nav .icons {
-    position: absolute;
-    display: flex;
-    justify-content: space-around;
-    left: 900px;
-    top: 0;
-}
-
-#login-nav #bell {
-    width: 24px; 
-    height: 24px;
-}
-
-#login-nav #settings {
-    width: 24px; 
-    height: 24px;
 }
 
 .agenda-container {
