@@ -31,3 +31,39 @@ function updateCalendar(month) {
 const currentMonth = new Date().getMonth();
 document.getElementById('month-select').value = currentMonth;
 updateCalendar(currentMonth);
+
+
+
+// Seleccionar elementos
+const openModalBtn = document.getElementById('openModalBtn');
+const appointmentModal = document.getElementById('appointmentModal');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const cancelBtn = document.getElementById('cancelBtn');
+const saveBtn = document.getElementById('saveBtn');
+
+// Funciones para mostrar/ocultar modal
+function openModal() {
+    appointmentModal.style.display = 'flex';
+}
+
+function closeModal() {
+    appointmentModal.style.display = 'none';
+}
+
+// Event listeners
+openModalBtn.addEventListener('click', openModal);
+closeModalBtn.addEventListener('click', closeModal);
+cancelBtn.addEventListener('click', closeModal);
+
+saveBtn.addEventListener('click', function() {
+    // Aquí podrías agregar lógica de validación o envío de formulario
+    alert('Cita guardada');
+    closeModal();
+});
+
+// Cerrar modal si se hace clic fuera de él
+appointmentModal.addEventListener('click', function(event) {
+    if (event.target === appointmentModal) {
+        closeModal();
+    }
+});
