@@ -66,19 +66,18 @@
 <body>
    
     </header>
-    <!-- Contenedor para el botón y el campo de búsqueda -->
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <input type="text" placeholder="Search" style="padding: 8px; width: 200px; border: 1px solid #ccc; border-radius: 5px;">
-        <button id="openModalBtn" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
-            + Add Patient
-        </button>
-    </div>
+    
+    
 
     <!-- Tabla para la base de datos -->
     <main class="table">
-        <section class="table__header">
-            <h1>Patients</h1>
-        </section>
+        <!-- Contenedor para el botón y el campo de búsqueda -->
+        
+            <input type="text" placeholder="Search" style="padding: 8px; width: 200px; border: 1px solid #ccc; border-radius: 5px;">
+            <button id="openModalBtn" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                + Add Patient
+            </button>
+        
         <section class="table__body">
             <table>
                 <thead>
@@ -126,7 +125,7 @@
     <div id="formModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Edit Patient</h2>
+            <h2>Patient Info</h2>
             <!-- Formulario existente -->
             <div class="form-group">
                 <label for="firstName">First Name</label>
@@ -136,10 +135,22 @@
                 <label for="lastName">Last Name</label>
                 <input type="text" id="lastName" name="lastName" required>
             </div>
+
+            <div class="form-group">
+                <label for="checkInDate">Date of birth</label>
+                <input type="date" id="dob" name="dateofbirth" required>
+            </div>
+
+            <div class="form-group">
+                <label for="checkInDate">Age</label>
+                <input type="number" id="age" name="age"  required>
+            </div>
+
             <div class="form-group">
                 <label for="checkInDate">Date of Check In</label>
                 <input type="date" id="checkInDate" name="checkInDate" required>
             </div>
+
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
@@ -150,7 +161,7 @@
             </div>
             <div class="form-group">
                 <label for="consultingDoctor">Consulting Doctor</label>
-                <input type="text" id="consultingDoctor" name="consultingDoctor" readonly>
+                <input type="text" id="consultingDoctor" name="consultingDoctor" value="Dr. Andrew " readonly>
             </div>
             <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
                 <button type="button" onclick="closeModal()" style="padding: 10px 20px; background-color: #f5f5f5; color: #333; border: 1px solid #ccc; border-radius: 5px; cursor: pointer;">
