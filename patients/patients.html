@@ -4,12 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Patients</title>
-    <link rel="stylesheet" href="../patients/styles.css">
-    <link rel="stylesheet" href="../agenda/styles.css">
-    
+  <link rel="stylesheet" href="../patients/styles.css">
 </head>
-
 <body>
+    <!-- Encabezado de la página -->
     <header class="header">
         <div class="logo">
             <img src="./images/login-logo.png" alt="Medical Star Logo">
@@ -39,20 +37,25 @@
     
     <!-- Tabla para la base de datos -->
     <main class="table">
+
         <!-- Contenedor para el botón y el campo de búsqueda -->
-        
-            <input type="text" placeholder="Search" style="padding: 8px; width: 200px; border: 1px solid #ccc; border-radius: 5px;">
-            <button id="openModalBtn" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                + Add Patient
-            </button>
-        
+         <div class="table__header">
+            <div class="table__header-buttons">
+                <input type="text" placeholder="Search" style=" padding: 8px; width: 200px; border: 1px solid #ccc; border-radius: 5px;">
+                <button class="action-btn add-btn toggle-modal" style="padding: 10px 40px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    + Add Patient
+                </button>
+            </div>
+        </div>
+        <!-- Contenedor para la tabla -->
         <section class="table__body">
             <table>
                 <thead>
                     <tr>
                         <th>ID PATIENT</th>
                         <th>DATE CHECK IN</th>
-                        <th>PATIENT NAME</th>
+                        <th>FIRST NAME</th>
+                        <th>LAST NAME</th>
                         <th>EMAIL</th>
                         <th>PHONE</th>
                         <th>DOCTOR ASSIGNED</th>
@@ -61,108 +64,130 @@
                         <th>DELETE</th>
                     </tr>
                 </thead>
+                <!-- Cuerpo de la tabla -->
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>12/02/2025</td>
-                        <td>Emi</td>
-                        <td>@bbb.com</td>
-                        <td>3111</td>
-                        <td>Frank</td>
-                        <td>
-                            <button onclick="editPatient(this)" style="background: none; border: none; cursor: pointer;">
-                                <img src="../patients/images/pencil.svg" alt="EDIT">
-                            </button>
-                        </td>
-                        <td>
-                            <button  style="background: none; border: none; cursor: pointer;">
-                                <img src="../patients/images/eye.svg" alt="VIEW">
-                            </button>
-                        </td>
-                        <td>
-                            <button style="background: none; border: none; cursor: pointer;">
-                                <img src="../patients/images/trash3.svg" alt="DELETE">
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>12/02/2025</td>
-                        <td>Emi</td>
-                        <td>@bbb.com</td>
-                        <td>3111</td>
-                        <td>Frank</td>
-                        <td>
-                            <button onclick="editPatient(this)" style="background: none; border: none; cursor: pointer;">
-                                <img src="../patients/images/pencil.svg" alt="EDIT">
-                            </button>
-                        </td>
-                        <td>
-                            <button  style="background: none; border: none; cursor: pointer;">
-                                <img src="../patients/images/eye.svg" alt="VIEW">
-                            </button>
-                        </td>
-                        <td>
-                            <button style="background: none; border: none; cursor: pointer;">
-                                <img src="../patients/images/trash3.svg" alt="DELETE">
-                            </button>
-                        </td>
-                    </tr>
+                    
                 </tbody>
             </table>
         </section>
     </main>
-    <div id="formModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Patient Info</h2>
-            <!-- Formulario existente -->
-            <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input type="text" id="firstName" name="firstName" required>
-            </div>
-            <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" name="lastName" required>
-            </div>
 
-            <div class="form-group">
-                <label for="checkInDate">Date of birth</label>
-                <input type="date" id="dob" name="dateofbirth" required>
+     <!-- Backdrop , Añandir paciente modal -->
+     <div class="backdrop" id="modal-backdrop">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Add Patient</h2>
+                <button class="close-btn" id="close-modal">x</button>
             </div>
+            <div class="modal-body">
+                <div class="form-section">
+                    <h3 class="form-title">Add patient information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="first-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Date of birth</label>
+                            <div class="input-icon-wrapper">
+                                <input type="date" class="form-control" >
+                                
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="last-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Date of check in</label>
+                            <div class="input-icon-wrapper">
+                                <input type="date" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Age</label>
+                            <input type="number" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Blood group</label>
+                            <div class="dropdown">
+                                <select class="dropdown-select">
+                                    <option>O+</option>
+                                    <option>O-</option>
+                                    <option>A+</option>
+                                    <option>A-</option>
+                                    <option>B+</option>
+                                    <option>B-</option>
+                                    <option>AB+</option>
+                                    <option>AB-</option>
+                                </select>
+                                <span class="dropdown-icon">▼</span>
+                                <span class="required-indicator"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Gender</label>
+                            <div class="dropdown">
+                                <select class="dropdown-select">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Other</option>
+                                </select>
+                                <span class="dropdown-icon">▼</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Consulting Doctor</label>
+                            <input type="text" class="form-control" value="Dr. Andrew Taylor">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Weight</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Height</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Phone </label>
+                            <div class="input-icon-wrapper">
+                                <input type="tel" class="form-control with-icon" id="phone" required>
+                                <span class="input-icon"><img src="../patients/images/telephone.svg" alt="#"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <div class="input-icon-wrapper">
+                                <input type="email" class="form-control with-icon" id="email" required>
+                                <span class="input-icon"><img src="../patients/images/envelope.svg" alt="#"></span>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="form-group">
-                <label for="checkInDate">Age</label>
-                <input type="number" id="age" name="age"  required>
+                
+               
             </div>
-
-            <div class="form-group">
-                <label for="checkInDate">Date of Check In</label>
-                <input type="date" id="checkInDate" name="checkInDate" required>
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="mobileNumber">Mobile Number</label>
-                <input type="tel" id="mobileNumber" name="mobileNumber" required>
-            </div>
-            <div class="form-group">
-                <label for="consultingDoctor">Consulting Doctor</label>
-                <input type="text" id="consultingDoctor" name="consultingDoctor" value="Dr. Andrew " readonly>
-            </div>
-            <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
-                <button type="button" onclick="closeModal()" style="padding: 10px 20px; background-color: #f5f5f5; color: #333; border: 1px solid #ccc; border-radius: 5px; cursor: pointer;">
-                    Cancel
-                </button>
-                <button type="button" onclick="savePatient()" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                    Save
-                </button>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-modal">Cancel</button>
+                <button class="btn btn-primary" id="save-modal">Save</button>
             </div>
         </div>
     </div>
+
+    
     
     <script src="script.js"></script>
 </body>

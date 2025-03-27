@@ -1,118 +1,99 @@
-//Abre la ventana de añadir paciente
-var modal = document.getElementById("formModal");
-var btn = document.getElementById("openModalBtn");
-var span = document.getElementsByClassName("close")[0];
 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
 
-span.onclick = function() {
-    modal.style.display = "none";
-}
+// Description: This file contains the javascript code for the patients page.
 
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    const modalBackdrop = document.getElementById('modal-backdrop');
+    const toggleButton = document.querySelector('.toggle-modal');
+    const closeButton = document.getElementById('close-modal');
+    const cancelButton = document.getElementById('cancel-modal');
+    
+
+    // Show modal function
+    function showModal() {
+        modalBackdrop.style.display = 'flex';
+        // Add animation class if desired
+        setTimeout(() => {
+            modalBackdrop.style.opacity = '1';
+        }, 10);
     }
-}
 
-function addPatientToTable() {
-    // Obtener los valores del formulario
-    const firstName = document.getElementById("firstName").value;
-    const lastName = document.getElementById("lastName").value;
-    const dob = document.getElementById("dob").value;
-    const checkInDate = document.getElementById("checkInDate").value;
-    const email = document.getElementById("email").value;
-    const mobileNumber = document.getElementById("mobileNumber").value;
-    const consultingDoctor = document.getElementById("consultingDoctor").value;
+    // Hide modal function
+    function hideModal() {
+        modalBackdrop.style.opacity = '0';
+        setTimeout(() => {
+            modalBackdrop.style.display = 'none';
+            // Hide calendar if it's open
+            calendar.style.display = 'none';
+        }, 300);
+    }
 
-    // Obtener el cuerpo de la tabla
-    const tableBody = document.querySelector(".table__body tbody");
+    // Event listeners
+    toggleButton.addEventListener('click', showModal);
+    closeButton.addEventListener('click', hideModal);
+    cancelButton.addEventListener('click', hideModal);
 
-    // Crear una nueva fila
-    const newRow = document.createElement("tr");
+    // Close when clicking outside the modal
+    modalBackdrop.addEventListener('click', (e) => {
+        if (e.target === modalBackdrop) {
+            hideModal();
+        }
+    });  
 
-    // Agregar celdas a la fila
+
+document.getElementById('save-modal').addEventListener('click', function () {
+    // Obtén los valores de los campos del formulario
+    const firstName = document.getElementById('first-name').value;
+    const lastName = document.getElementById('last-name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+
+    // Verifica que los campos requeridos no estén vacíos
+    if (!firstName || !lastName || !email || !phone) {
+        alert('Please fill in all required fields.');
+        return;
+    }
+
+    // Obtén el cuerpo de la tabla
+    const tableBody = document.querySelector('.table__body tbody');
+
+    // Crea una nueva fila
+    const newRow = document.createElement('tr');
     newRow.innerHTML = `
         <td>${tableBody.rows.length + 1}</td>
-        <td>${checkInDate}</td>
-        <td>${firstName} ${lastName}</td>
+        <td>${new Date().toLocaleDateString()}</td>
+        <td>${firstName}</td>
+        <td>${lastName}</td>
         <td>${email}</td>
-        <td>${mobileNumber}</td>
-        <td>${consultingDoctor}</td>
-        <td><img src="../patients/images/pencil.svg" alt="EDIT"></td>
+        <td>${phone}</td>
+        <td>Dr. Andrew Taylor</td>
+        <td>
+            <button onclick="editPatient(this)" style="background: none; border: none; cursor: pointer;">
+                <img src="../patients/images/pencil.svg" alt="EDIT">
+            </button>
+        </td>
+        <td>
+            <button style="background: none; border: none; cursor: pointer;">
+                <img src="../patients/images/eye.svg" alt="VIEW">
+            </button>
+        </td>
+        <td>
+            <button style="background: none; border: none; cursor: pointer;">
+                <img src="../patients/images/trash3.svg" alt="DELETE">
+            </button>
+        </td>
     `;
 
-    // Agregar la fila a la tabla
+    // Agrega la nueva fila al cuerpo de la tabla
     tableBody.appendChild(newRow);
 
-    // Cerrar el modal
-    modal.style.display = "none";
+    // Limpia los campos del formulario
+    document.getElementById('first-name').value = '';
+    document.getElementById('last-name').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('phone').value = '';
 
-    // Limpiar el formulario
-    document.getElementById("formModal").querySelectorAll("input, select").forEach(input => input.value = "");
-}
-
-// Función para editar un paciente
-    function editPatient(button) {
-        // Obtener la fila del botón clicado
-        const row = button.closest("tr");
-        const cells = row.querySelectorAll("td");
-
-        // Obtener los datos de la fila
-        const id = cells[0].textContent;
-        const checkInDate = cells[1].textContent;
-        const patientName = cells[2].textContent.split(" ");
-        const email = cells[3].textContent;
-        const phone = cells[4].textContent;
-        const doctor = cells[5].textContent;
-
-        // Dividir el nombre en nombre y apellido
-        const firstName = patientName[0];
-        const lastName = patientName[1];
-
-        // Rellenar los campos del formulario
-        document.getElementById("firstName").value = firstName;
-        document.getElementById("lastName").value = lastName;
-        document.getElementById("checkInDate").value = checkInDate;
-        document.getElementById("email").value = email;
-        document.getElementById("mobileNumber").value = phone;
-        document.getElementById("consultingDoctor").value = doctor;
-
-        // Mostrar el modal
-        const modal = document.getElementById("formModal");
-        modal.style.display = "block";
-    }
-
-    // Función para cerrar el modal
-    function closeModal() {
-        const modal = document.getElementById("formModal");
-        modal.style.display = "none";
-    }
-
-    // Función para guardar los cambios
-    function savePatient() {
-        // Obtener los valores del formulario
-        const firstName = document.getElementById("firstName").value;
-        const lastName = document.getElementById("lastName").value;
-        const checkInDate = document.getElementById("checkInDate").value;
-        const email = document.getElementById("email").value;
-        const phone = document.getElementById("mobileNumber").value;
-        const doctor = document.getElementById("consultingDoctor").value;
-
-        // Actualizar la fila seleccionada (puedes guardar una referencia a la fila en `editPatient`)
-        const row = document.querySelector(".table__body tr.selected");
-        const cells = row.querySelectorAll("td");
-
-        cells[1].textContent = checkInDate;
-        cells[2].textContent = `${firstName} ${lastName}`;
-        cells[3].textContent = email;
-        cells[4].textContent = phone;
-        cells[5].textContent = doctor;
-
-        // Cerrar el modal
-        closeModal();
-    }
+    // Cierra el modal
+    document.getElementById('modal-backdrop').style.display = 'none';
+});
 
 
