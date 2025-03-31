@@ -6,7 +6,7 @@
     const toggleButton = document.querySelector('.toggle-modal');
     const closeButton = document.getElementById('close-modal');
     const cancelButton = document.getElementById('cancel-modal');
-    
+  
 
     // Show modal function
     function showModal() {
@@ -73,11 +73,13 @@ document.getElementById('save-modal').addEventListener('click', function () {
         </td>
         <td>
             <button style="background: none; border: none; cursor: pointer;">
-                <img src="../patients/images/eye.svg" alt="VIEW">
+                <a href="../patients/patient_info.html">
+                    <img src="../patients/images/eye.svg" alt="VIEW">
+                </a>
             </button>
         </td>
         <td>
-            <button style="background: none; border: none; cursor: pointer;">
+            <button onclick="deletePatient(this)" style="background: none; border: none; cursor: pointer;">
                 <img src="../patients/images/trash3.svg" alt="DELETE">
             </button>
         </td>
@@ -94,6 +96,17 @@ document.getElementById('save-modal').addEventListener('click', function () {
 
     // Cierra el modal
     document.getElementById('modal-backdrop').style.display = 'none';
+
 });
 
+// Función para eliminar una fila con confirmación
+function deletePatient(button) {
+    // Muestra un cuadro de confirmación
+    const confirmation = confirm('Are you sure you want to delete this patient?');
+    
+    if (confirmation) {
+        const row = button.closest('tr'); // Encuentra la fila más cercana al botón
+        row.remove(); // Elimina la fila de la tabla
+    }
+}
 

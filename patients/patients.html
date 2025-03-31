@@ -41,7 +41,7 @@
         <!-- Contenedor para el botón y el campo de búsqueda -->
          <div class="table__header">
             <div class="table__header-buttons">
-                <input type="text" placeholder="Search" style=" padding: 8px; width: 200px; border: 1px solid #ccc; border-radius: 5px;">
+                <input type="text" placeholder="Search patient" style=" padding: 8px; width: 200px; border: 1px solid #ccc; border-radius: 5px;">
                 <button class="action-btn add-btn toggle-modal" style="padding: 10px 40px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
                     + Add Patient
                 </button>
@@ -90,7 +90,7 @@
                         <div class="form-group">
                             <label class="form-label">Date of birth</label>
                             <div class="input-icon-wrapper">
-                                <input type="date" class="form-control" >
+                                <input type="date" class="form-control"  required>
                                 
                             </div>
                         </div>
@@ -151,11 +151,11 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">Weight</label>
+                            <label class="form-label">Weight (kg)</label>
                             <input type="text" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Height</label>
+                            <label class="form-label">Height (cm)</label>
                             <input type="text" class="form-control">
                         </div>
                     </div>
@@ -176,9 +176,7 @@
                             </div>
                         </div>
                     </div>
-
-                
-               
+                    
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" id="cancel-modal">Cancel</button>
@@ -186,8 +184,6 @@
             </div>
         </div>
     </div>
-
-    
     
     <script src="script.js"></script>
 </body>
