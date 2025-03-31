@@ -181,8 +181,9 @@
 
     <div class="container mt-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <div class="search-container">
-                <input type="text" class="form-control" placeholder="Search document/name/description">
+            <div class="search-container position-relative">
+                <input type="text" class="form-control" placeholder="Search document/date" style="padding-left: 35px; width: 300px;">
+                <i class="bi bi-search position-absolute" style="left: 10px; top: 50%; transform: translateY(-50%);"></i>
             </div>
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadModal">
                 <i class="bi bi-upload"></i> Upload File
@@ -196,7 +197,6 @@
                         <th>DOCUMENTS</th>
                         <th>DATE</th>
                         <th>UPLOAD BY</th>
-                        <th>FILES</th>
                         <th>DESCRIPTION</th>
                         <th>VIEW</th>
                         <th>DELETE</th>
@@ -207,28 +207,40 @@
                         <td><i class="bi bi-file-earmark-medical"></i> Holidays Calendar 2024</td>
                         <td>25/22/2023</td>
                         <td>Dr. Andrew Taylor</td>
-                        <td>1 file</td>
+                       
                         <td>Lab test</td>
-                        <td><i class="bi bi-eye text-primary"></i></td>
-                        <td><i class="bi bi-trash text-danger"></i></td>
+                        <td>
+                            <button class="btn btn-sm btn-link"><i class="bi bi-eye"></i>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-link text-danger"><i class="bi bi-trash"></i></button>
+                        </td>
                     </tr>
                     <tr>
                         <td><i class="bi bi-file-earmark-medical"></i> Legal Compliance</td>
                         <td>23/11/2023</td>
                         <td>Dr. Andrew Taylor</td>
-                        <td>1 file</td>
+                        
                         <td>Blood test</td>
-                        <td><i class="bi bi-eye text-primary"></i></td>
-                        <td><i class="bi bi-trash text-danger"></i></td>
+                        <td>
+                            <button class="btn btn-sm btn-link"><i class="bi bi-eye"></i>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-link text-danger"><i class="bi bi-trash"></i></button>
+                        </td>
                     </tr>
                     <tr>
                         <td><i class="bi bi-file-earmark-medical"></i> Workplace Flexibility</td>
                         <td>23/11/2023</td>
                         <td>Dr. Andrew Taylor</td>
-                        <td>1 files</td>
+                        
                         <td>X-ray</td>
-                        <td><i class="bi bi-eye text-primary"></i></td>
-                        <td><i class="bi bi-trash text-danger"></i></td>
+                        <td>
+                            <button class="btn btn-sm btn-link"><i class="bi bi-eye"></i>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-link text-danger"><i class="bi bi-trash"></i></button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
