@@ -46,7 +46,7 @@ document.getElementById('save-modal').addEventListener('click', function () {
     const lastName = document.getElementById('last-name').value;
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
-
+    const dateofBirth = document.getElementById('dob').value;
     // Verifica que los campos requeridos no estén vacíos
     if (!firstName || !lastName || !email || !phone) {
         alert('Please fill in all required fields.');
@@ -65,12 +65,8 @@ document.getElementById('save-modal').addEventListener('click', function () {
         <td>${lastName}</td>
         <td>${email}</td>
         <td>${phone}</td>
+        <td>${dateofBirth}</td>
         <td>Dr. Andrew Taylor</td>
-        <td>
-            <button onclick="editPatient(this)" style="background: none; border: none; cursor: pointer;">
-                <img src="../patients/images/pencil.svg" alt="EDIT">
-            </button>
-        </td>
         <td>
             <button style="background: none; border: none; cursor: pointer;">
                 <a href="../patients/patient_info.html">
