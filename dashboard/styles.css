@@ -315,38 +315,63 @@ body {
 }
 
 /* Calendar card */
-.calendar-card {
-    grid-column: 3;
-    grid-row: 1;
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    text-align: center;
 }
 
-.calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+h1 {
     margin-bottom: 20px;
 }
 
-.month-title {
-    font-size: 20px;
-    font-weight: 600;
-}
-
-.month-nav {
+.month-controls {
     display: flex;
-    gap: 10px;
-}
-
-.month-nav-btn {
-    width: 24px;
-    height: 24px;
-    display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    border: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
     border-radius: 4px;
-    background-color: white;
+    background-color: #007BFF;
+    color: white;
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#current-month {
+    margin: 0;
+    font-size: 18px;
+}
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.day {
+    padding: 10px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.day:hover {
+    background-color: #d0d0d0;
 }
 
 /* Prescription card */
@@ -486,7 +511,7 @@ body {
     width: 90%;
     max-width: 800px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    overflow: visible;
 }
 
 .modal-header {

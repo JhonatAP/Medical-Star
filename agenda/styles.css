@@ -295,3 +295,63 @@ select {
     cursor: pointer;
     color: #888;
 }
+/* Estilos para el calendario */
+.agenda-container {
+    padding: 20px;
+}
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    text-align: center;
+}
+
+.calendar-day {
+    border: 1px solid #ddd;
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.calendar-day:hover {
+    background-color: #f0f0f0;
+}
+
+.appointment-badge {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7em;
+}
+
+.appointment-tooltip {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 10;
+    padding: 10px;
+    min-width: 200px;
+}
+
+.appointment-tooltip div {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.appointment-tooltip div:last-child {
+    border-bottom: none;
+}

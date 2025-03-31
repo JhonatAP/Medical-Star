@@ -134,13 +134,17 @@
         <section class="card calendar-card">
             <div class="calendar-header">
                 <h2 class="month-title">February 2025</h2>
-                <div class="month-nav">
-                    <button class="month-nav-btn">◀</button>
-                    <button class="month-nav-btn">▶</button>
-                </div>
             </div>
-            
             <div class="calendar-grid">
+                <div class="container">
+                    <h1>Interactive Agenda</h1>
+                    <div class="month-controls">
+                        <button id="prev-month">◀</button>
+                        <h2 id="current-month">Month</h2>
+                        <button id="next-month">▶</button>
+                    </div>
+                    <div id="calendar"></div>
+                </div>
             </div>
         </section>
         
@@ -159,12 +163,8 @@
                 <span class="patient-status">New patient</span>
             </div>
             
-            <button class="action-btn">Details Appoiment</button>
-            
             <div class="prescription-actions">
                 <button class="action-btn add-btn toggle-modal">+ New prescription</button>
-                <button class="action-btn save-btn">Unsave</button>
-                <button class="action-btn archive-btn">✓ Archive</button>
             </div>
         </section>
         
@@ -387,7 +387,7 @@
             <div class="calendar-day other-month">4</div>
         </div>
     </div>
-
+    <script src="./calendar.js"></script>
     <script src="./script.js"></script>
     </main>
 </body>
