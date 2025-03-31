@@ -208,7 +208,7 @@ tbody tr:nth-child(even) {
     background-color: white;
     border-radius: 8px;
     width: 90%;
-    max-width: 800px;
+    max-width: 850px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
@@ -369,3 +369,7 @@ tbody tr:nth-child(even) {
     pointer-events: none;
 }
 
+
+
+
+/* Modal de confirmación */
