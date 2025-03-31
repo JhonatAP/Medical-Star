@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orden de Laboratorio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 5px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .nav-item.active {
+            color: #1976d2;
+            border-bottom: 2px solid #1976d2;
+        }
+
+        .search-bar {
+            position: relative;
+            width: 300px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 8px 12px;
+            padding-left: 35px;
+            border-radius: 20px;
+            border: none;
+            background-color: #f0f0f0;
+        }
+
+        .search-bar::before {
+            content: "🔍";
+            position: absolute;
+            left: 12px;
+            top: 8px;
+            color: #888;
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .notification {
+            position: relative;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #f44336;
+            color: white;
+            font-size: 10px;
+            padding: 2px 5px;
+            border-radius: 50%;
+        }
+
+        .user-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: #e0e0e0;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f5f9fc;
+            color: #333;
+            margin: 0;
+
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-lab {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 20px;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            color: #7f8c8d;
+            margin-top: 0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        input[type="text"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .required:after {
+            content: " *";
+            color: #e74c3c;
+        }
+        
+        .test-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .test-option {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        
+        .test-option label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            cursor: pointer;
+        }
+        
+        .test-option input {
+            margin-right: 10px;
+        }
+        
+        .urgency-level {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .urgency-option {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .urgency-option input {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <img src="./images/login-logo.png" alt="Medical Star Logo">
+        </div>
+        
+        <nav class="nav">
+            <a href="../dashboard/dashboard.html" class="nav-item">Dashboard</a>
+            <a href="../agenda/agenda.html" class="nav-item">Appointments</a>
+            <a href="../patients/patients.html" class="nav-item">Patients</a>
+        </nav>
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+        </div>
+        
+        <div class="user-actions">
+            <div class="notification">
+                <span>🔔</span>
+                <span class="notification-badge">4</span>
+            </div>
+            <span>⚙️</span>
+            <div class="user-avatar">
+                <img src="/api/placeholder/35/35" alt="User Avatar">
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="header-lab">
+            <h1>Orden de Laboratorio</h1>
+            <p>Complete los datos para solicitar estudios de laboratorio</p>
+        </div>
+        
+        <form id="labOrderForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="patientName" class="required">Nombre del Paciente</label>
+                    <input type="text" id="patientName" required>
+                </div>
+                <div class="form-group">
+                    <label for="patientId" class="required">Identificación</label>
+                    <input type="text" id="patientId" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="birthDate" class="required">Fecha de Nacimiento</label>
+                    <input type="date" id="birthDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender" class="required">Sexo</label>
+                    <select id="gender" required>
+                        <option value="">Seleccionar</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="orderDate" class="required">Fecha de Orden</label>
+                    <input type="date" id="orderDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="physician" class="required">Médico Solicitante</label>
+                    <input type="text" id="physician" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="required">Nivel de Urgencia</label>
+                <div class="urgency-level">
+                    <div class="urgency-option">
+                        <label><input type="radio" name="urgency" value="Rutinario" checked> Rutinario</label>
+                    </div>
+                    <div class="urgency-option">
+                        <label><input type="radio" name="urgency" value="Urgente"> Urgente</label>
+                    </div>
+                    <div class="urgency-option">
+                        <label><input type="radio" name="urgency" value="Emergencia"> Emergencia</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="reason" class="required">Razón del Estudio/Diagnóstico Presuntivo</label>
+                <textarea id="reason" required placeholder="Describa la razón por la cual solicita los estudios..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label class="required">Tipo de Análisis Requerido</label>
+                <div class="test-options">
+                    <div class="test-option">
+                        <label><input type="checkbox" name="tests" value="Hemograma completo"> Hemograma completo</label>
+                    </div>
+                    <div class="test-option">
+                        <label><input type="checkbox" name="tests" value="Química sanguínea"> Química sanguínea</label>
+                    </div>
+                    <div class="test-option">
+                        <label><input type="checkbox" name="tests" value="Perfil lipídico"> Perfil lipídico</label>
+                    </div>
+                    <div class="test-option">
+                        <label><input type="checkbox" name="tests" value="Pruebas de función hepática"> Pruebas de función hepática</label>
+                    </div>
+                    <div class="test-option">
+                        <label><input type="checkbox" name="tests" value="Pruebas de función renal"> Pruebas de función renal</label>
+                    </div>
+                    <div class="test-option">
+                        <label><input type="checkbox" name="tests" value="Examen general de orina"> Examen general de orina</label>
+                    </div>
+                    <div class="test-option">
+                        <label><input type="checkbox" name="tests" value="Cultivo y antibiograma"> Cultivo y antibiograma</label>
+                    </div>
+                    <div class="test-option">
+                        <label><input type="checkbox" name="tests" value="Pruebas de coagulación"> Pruebas de coagulación</label>
+                    </div>
+                    <div class="test-option">
+                        <label><input type="checkbox" name="tests" value="Marcadores tumorales"> Marcadores tumorales</label>
+                    </div>
+                    <div class="test-option">
+                        <label><input type="checkbox" name="tests" value="Pruebas tiroideas"> Pruebas tiroideas</label>
+                    </div>
+                    <div class="test-option">
+                        <label><input type="checkbox" name="tests" value="Serología"> Serología</label>
+                    </div>
+                    <div class="test-option">
+                        <label><input type="checkbox" name="tests" value="Otro"> Otro (especificar)</label>
+                        <input type="text" id="otherTest" style="margin-top: 5px; width: 100%; display: none;">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="instructions">Instrucciones Especiales</label>
+                <textarea id="instructions" placeholder="Indicaciones especiales para el laboratorio..."></textarea>
+            </div>
+            
+            <button type="button" class="btn" onclick="generateLabOrder()">Generar Orden de Laboratorio</button>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        // Mostrar campo "Otro" cuando se selecciona esa opción
+        document.querySelector('input[value="Otro"]').addEventListener('change', function() {
+            document.getElementById('otherTest').style.display = this.checked ? 'block' : 'none';
+        });
+        
+        function generateLabOrder() {
+            // Obtener valores del formulario
+            const patientName = document.getElementById('patientName').value;
+            const patientId = document.getElementById('patientId').value;
+            const birthDate = document.getElementById('birthDate').value;
+            const gender = document.getElementById('gender').value;
+            const orderDate = document.getElementById('orderDate').value;
+            const physician = document.getElementById('physician').value;
+            const urgency = document.querySelector('input[name="urgency"]:checked').value;
+            const reason = document.getElementById('reason').value;
+            
+            // Obtener pruebas seleccionadas
+            const selectedTests = [];
+            document.querySelectorAll('input[name="tests"]:checked').forEach(test => {
+                if (test.value === "Otro") {
+                    selectedTests.push(document.getElementById('otherTest').value);
+                } else {
+                    selectedTests.push(test.value);
+                }
+            });
+            
+            const instructions = document.getElementById('instructions').value;
+            
+            // Validación básica
+            if (!patientName || !patientId || !birthDate || !gender || !orderDate || !physician || !reason || selectedTests.length === 0) {
+                alert("Por favor complete todos los campos requeridos");
+                return;
+            }
+            
+            // Crear PDF
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Encabezado
+            doc.setFontSize(18);
+            doc.setTextColor(40, 40, 40);
+            doc.setFont('helvetica', 'bold');
+            doc.text('ORDEN DE LABORATORIO', 105, 20, { align: 'center' });
+            
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            doc.text('Clínica Especializada - Tel: 555-1000', 105, 28, { align: 'center' });
+            
+            // Línea divisoria
+            doc.setDrawColor(200, 200, 200);
+            doc.line(20, 35, 190, 35);
+            
+            // Información del paciente
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            
+            doc.text(`Paciente: ${patientName}`, 20, 45);
+            doc.text(`Identificación: ${patientId}`, 20, 55);
+            doc.text(`Fecha Nacimiento: ${formatDate(birthDate)}`, 20, 65);
+            doc.text(`Sexo: ${gender}`, 20, 75);
+            
+            doc.text(`Fecha Orden: ${formatDate(orderDate)}`, 120, 45);
+            doc.text(`Médico: Dr. ${physician}`, 120, 55);
+            doc.text(`Urgencia: ${urgency}`, 120, 65);
+            
+            // Razón del estudio
+            doc.setFont('helvetica', 'bold');
+            doc.text('Razón del Estudio/Diagnóstico Presuntivo:', 20, 90);
+            doc.setFont('helvetica', 'normal');
+            const splitReason = doc.splitTextToSize(reason, 170);
+            doc.text(splitReason, 20, 100);
+            
+            // Pruebas solicitadas
+            doc.setFont('helvetica', 'bold');
+            doc.text('Pruebas Solicitadas:', 20, 130);
+            doc.setFont('helvetica', 'normal');
+            
+            let yPosition = 140;
+            selectedTests.forEach(test => {
+                doc.text(`• ${test}`, 25, yPosition);
+                yPosition += 7;
+            });
+            
+            // Instrucciones especiales si existen
+            if (instructions) {
+                doc.setFont('helvetica', 'bold');
+                doc.text('Instrucciones Especiales:', 20, yPosition + 10);
+                doc.setFont('helvetica', 'normal');
+                const splitInstructions = doc.splitTextToSize(instructions, 170);
+                doc.text(splitInstructions, 20, yPosition + 20);
+            }
+            
+            // Pie de página
+            doc.setFontSize(10);
+            doc.setTextColor(100, 100, 100);
+            doc.text('Firma y Sello del Médico: _________________________', 20, 280);
+            doc.text('Cédula Profesional: _______________________________', 120, 280);
+            
+            // Guardar PDF
+            doc.save(`Orden_Laboratorio_${patientName.replace(/ /g, '_')}.pdf`);
+        }
+        
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const date = new Date(dateString);
+            return date.toLocaleDateString('es-ES', options);
+        }
+    </script>
+</body>
+</html>

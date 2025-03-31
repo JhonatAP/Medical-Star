@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Receta Médica</title>
+    <title>Medical Prescription Form</title>
     <style>
         * {
             margin: 0;
@@ -112,9 +112,15 @@
             height: 100%;
             object-fit: cover;
         }
-        form {
+        .container {
             max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
+        
 
         .form-group {
             margin-bottom: 15px;
@@ -183,79 +189,80 @@
             </div>
         </div>
     </header>
-    <h1>Formulario de Receta Médica</h1>
-    <form id="prescriptionForm">
-        <div class="form-row">
-            <div class="form-group">
-                <label for="firstName">Nombre del Paciente:</label>
-                <input type="text" id="firstName" required>
+    <div class="container">
+        <h1>Medical Prescription Form</h1>
+        <form id="prescriptionForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">Patient First Name:</label>
+                    <input type="text" id="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Patient Last Name:</label>
+                    <input type="text" id="lastName" required>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="lastName">Apellido del Paciente:</label>
-                <input type="text" id="lastName" required>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" required>
+                        <option value="">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        
-        <div class="form-row">
-            <div class="form-group">
-                <label for="dob">Fecha de Nacimiento:</label>
-                <input type="date" id="dob" required>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="checkInDate">Consultation Date:</label>
+                    <input type="date" id="checkInDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="doctor">Attending Physician:</label>
+                    <input type="text" id="doctor" required>
+                </div>
             </div>
+            
             <div class="form-group">
-                <label for="age">Edad:</label>
-                <input type="number" id="age" required>
+                <label for="condition">Diagnosis/Condition:</label>
+                <input type="text" id="condition" required>
             </div>
+            
             <div class="form-group">
-                <label for="gender">Género:</label>
-                <select id="gender" required>
-                    <option value="">Seleccionar</option>
-                    <option value="Masculino">Masculino</option>
-                    <option value="Femenino">Femenino</option>
-                    <option value="Otro">Otro</option>
-                </select>
+                <label for="allergies">Allergies:</label>
+                <textarea id="allergies"></textarea>
             </div>
-        </div>
-        
-        <div class="form-row">
+            
             <div class="form-group">
-                <label for="checkInDate">Fecha de Consulta:</label>
-                <input type="date" id="checkInDate" required>
+                <label for="indications">General Instructions:</label>
+                <textarea id="indications" required></textarea>
             </div>
+            
             <div class="form-group">
-                <label for="doctor">Médico Tratante:</label>
-                <input type="text" id="doctor" required>
+                <label for="treatment">Treatment:</label>
+                <textarea id="treatment" required></textarea>
             </div>
-        </div>
-        
-        <div class="form-group">
-            <label for="condition">Diagnóstico/Condición:</label>
-            <input type="text" id="condition" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="allergies">Alergias:</label>
-            <textarea id="allergies"></textarea>
-        </div>
-        
-        <div class="form-group">
-            <label for="indications">Indicaciones Generales:</label>
-            <textarea id="indications" required></textarea>
-        </div>
-        
-        <div class="form-group">
-            <label for="treatment">Tratamiento:</label>
-            <textarea id="treatment" required></textarea>
-        </div>
-        
-        <button type="button" onclick="generatePDF()">Generar Receta Médica</button>
-    </form>
-
+            
+            <button type="button" onclick="generatePDF()">Generate Prescription</button>
+        </form>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
     <script>
-        // Función para generar el PDF
+        // Function to generate PDF
         function generatePDF() {
-            // Obtener los valores del formulario
+            // Get form values
             const firstName = document.getElementById('firstName').value;
             const lastName = document.getElementById('lastName').value;
             const dob = document.getElementById('dob').value;
@@ -268,93 +275,93 @@
             const indications = document.getElementById('indications').value;
             const treatment = document.getElementById('treatment').value;
 
-            // Validar que todos los campos requeridos estén completos
+            // Validate required fields
             if (!firstName || !lastName || !dob || !age || !gender || !checkInDate || !doctor || !condition || !indications || !treatment) {
-                alert('Por favor complete todos los campos requeridos');
+                alert('Please complete all required fields');
                 return;
             }
 
-            // Crear el PDF
+            // Create PDF
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
 
-            // Logo y encabezado (puedes personalizar esto)
+            // Header (you can customize this)
             doc.setFontSize(18);
             doc.setTextColor(40, 40, 40);
             doc.setFont('helvetica', 'bold');
-            doc.text('CONSULTORIO MÉDICO', 105, 20, { align: 'center' });
+            doc.text('MEDICAL PRACTICE', 105, 20, { align: 'center' });
             
             doc.setFontSize(14);
             doc.setFont('helvetica', 'normal');
             doc.text('Dr. ' + doctor, 105, 30, { align: 'center' });
             
             doc.setFontSize(10);
-            doc.text('Tel: 555-1234 • Dirección: Calle Principal 123', 105, 36, { align: 'center' });
+            doc.text('Tel: 555-1234 • Address: 123 Main Street', 105, 36, { align: 'center' });
             
-            // Línea divisoria
+            // Divider line
             doc.setDrawColor(200, 200, 200);
             doc.line(20, 42, 190, 42);
             
-            // Título del documento
+            // Document title
             doc.setFontSize(16);
             doc.setTextColor(50, 50, 150);
             doc.setFont('helvetica', 'bold');
-            doc.text('RECETA MÉDICA', 105, 52, { align: 'center' });
+            doc.text('MEDICAL PRESCRIPTION', 105, 52, { align: 'center' });
             
-            // Información del paciente
+            // Patient information
             doc.setFontSize(12);
             doc.setTextColor(0, 0, 0);
             doc.setFont('helvetica', 'normal');
             
-            doc.text(`Paciente: ${firstName} ${lastName}`, 20, 65);
-            doc.text(`Fecha de Nacimiento: ${formatDate(dob)}`, 20, 75);
-            doc.text(`Edad: ${age} años`, 20, 85);
-            doc.text(`Género: ${gender}`, 20, 95);
-            doc.text(`Fecha de Consulta: ${formatDate(checkInDate)}`, 120, 65);
+            doc.text(`Patient: ${firstName} ${lastName}`, 20, 65);
+            doc.text(`Date of Birth: ${formatDate(dob)}`, 20, 75);
+            doc.text(`Age: ${age} years`, 20, 85);
+            doc.text(`Gender: ${gender}`, 20, 95);
+            doc.text(`Consultation Date: ${formatDate(checkInDate)}`, 120, 65);
             
-            // Diagnóstico
+            // Diagnosis
             doc.setFont('helvetica', 'bold');
-            doc.text('Diagnóstico:', 20, 110);
+            doc.text('Diagnosis:', 20, 110);
             doc.setFont('helvetica', 'normal');
             doc.text(condition, 50, 110);
             
-            // Alergias si existen
+            // Allergies if any
             if (allergies) {
                 doc.setFont('helvetica', 'bold');
-                doc.text('Alergias:', 20, 120);
+                doc.text('Allergies:', 20, 120);
                 doc.setFont('helvetica', 'normal');
                 doc.text(allergies, 50, 120);
             }
             
-            // Indicaciones generales
+            // General instructions
             doc.setFont('helvetica', 'bold');
-            doc.text('Indicaciones Generales:', 20, 140);
+            doc.text('General Instructions:', 20, 140);
             doc.setFont('helvetica', 'normal');
             const splitIndications = doc.splitTextToSize(indications, 170);
             doc.text(splitIndications, 20, 150);
             
-            // Tratamiento
+            // Treatment
             doc.setFont('helvetica', 'bold');
-            doc.text('Tratamiento:', 20, 170);
+            doc.text('Treatment:', 20, 170);
             doc.setFont('helvetica', 'normal');
             const splitTreatment = doc.splitTextToSize(treatment, 170);
             doc.text(splitTreatment, 20, 180);
             
-            // Pie de página
+            // Footer
             doc.setFontSize(10);
             doc.setTextColor(100, 100, 100);
-            doc.text('Firma del Médico: _________________________', 20, 260);
-            doc.text('Sello y Cédula Profesional', 150, 260);
+            doc.text('Physician Signature: _________________________', 20, 260);
+            doc.text('Seal and Professional ID', 150, 260);
             
-            // Guardar el PDF
-            doc.save(`Receta_${lastName}_${firstName}.pdf`);
+            // Save PDF
+            doc.save(`Prescription_${lastName}_${firstName}.pdf`);
         }
         
-        // Función para formatear la fecha
+        // Date formatting function
         function formatDate(dateString) {
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             const date = new Date(dateString);
-            return date.toLocaleDateString('es-ES', options);
+            return date.toLocaleDateString('en-US', options);
         }
     </script>
 </body>
