@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Prescription Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 5px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .nav-item.active {
+            color: #1976d2;
+            border-bottom: 2px solid #1976d2;
+        }
+
+        .search-bar {
+            position: relative;
+            width: 300px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 8px 12px;
+            padding-left: 35px;
+            border-radius: 20px;
+            border: none;
+            background-color: #f0f0f0;
+        }
+
+        .search-bar::before {
+            content: "🔍";
+            position: absolute;
+            left: 12px;
+            top: 8px;
+            color: #888;
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .notification {
+            position: relative;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #f44336;
+            color: white;
+            font-size: 10px;
+            padding: 2px 5px;
+            border-radius: 50%;
+        }
+
+        .user-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: #e0e0e0;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 100px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        .form-row .form-group {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <img src="./images/login-logo.png" alt="Medical Star Logo">
+        </div>
+        
+        <nav class="nav">
+            <a href="../dashboard/dashboard.html" class="nav-item">Dashboard</a>
+            <a href="../agenda/agenda.html" class="nav-item">Appointments</a>
+            <a href="../patients/patients.html" class="nav-item">Patients</a>
+        </nav>
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+        </div>
+        
+        <div class="user-actions">
+            <div class="notification">
+                <span>🔔</span>
+                <span class="notification-badge">4</span>
+            </div>
+            <span>⚙️</span>
+            <div class="user-avatar">
+                <img src="/api/placeholder/35/35" alt="User Avatar">
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Medical Prescription Form</h1>
+        <form id="prescriptionForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">Patient First Name:</label>
+                    <input type="text" id="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Patient Last Name:</label>
+                    <input type="text" id="lastName" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" required>
+                        <option value="">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="checkInDate">Consultation Date:</label>
+                    <input type="date" id="checkInDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="doctor">Attending Physician:</label>
+                    <input type="text" id="doctor" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="condition">Diagnosis/Condition:</label>
+                <input type="text" id="condition" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="allergies">Allergies:</label>
+                <textarea id="allergies"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="indications">General Instructions:</label>
+                <textarea id="indications" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="treatment">Treatment:</label>
+                <textarea id="treatment" required></textarea>
+            </div>
+            
+            <button type="button" onclick="generatePDF()">Generate Prescription</button>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <script>
+        // Function to generate PDF
+        function generatePDF() {
+            // Get form values
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const dob = document.getElementById('dob').value;
+            const age = document.getElementById('age').value;
+            const gender = document.getElementById('gender').value;
+            const checkInDate = document.getElementById('checkInDate').value;
+            const doctor = document.getElementById('doctor').value;
+            const condition = document.getElementById('condition').value;
+            const allergies = document.getElementById('allergies').value;
+            const indications = document.getElementById('indications').value;
+            const treatment = document.getElementById('treatment').value;
+
+            // Validate required fields
+            if (!firstName || !lastName || !dob || !age || !gender || !checkInDate || !doctor || !condition || !indications || !treatment) {
+                alert('Please complete all required fields');
+                return;
+            }
+
+            // Create PDF
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Header (you can customize this)
+            doc.setFontSize(18);
+            doc.setTextColor(40, 40, 40);
+            doc.setFont('helvetica', 'bold');
+            doc.text('MEDICAL PRACTICE', 105, 20, { align: 'center' });
+            
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'normal');
+            doc.text('Dr. ' + doctor, 105, 30, { align: 'center' });
+            
+            doc.setFontSize(10);
+            doc.text('Tel: 555-1234 • Address: 123 Main Street', 105, 36, { align: 'center' });
+            
+            // Divider line
+            doc.setDrawColor(200, 200, 200);
+            doc.line(20, 42, 190, 42);
+            
+            // Document title
+            doc.setFontSize(16);
+            doc.setTextColor(50, 50, 150);
+            doc.setFont('helvetica', 'bold');
+            doc.text('MEDICAL PRESCRIPTION', 105, 52, { align: 'center' });
+            
+            // Patient information
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.setFont('helvetica', 'normal');
+            
+            doc.text(`Patient: ${firstName} ${lastName}`, 20, 65);
+            doc.text(`Date of Birth: ${formatDate(dob)}`, 20, 75);
+            doc.text(`Age: ${age} years`, 20, 85);
+            doc.text(`Gender: ${gender}`, 20, 95);
+            doc.text(`Consultation Date: ${formatDate(checkInDate)}`, 120, 65);
+            
+            // Diagnosis
+            doc.setFont('helvetica', 'bold');
+            doc.text('Diagnosis:', 20, 110);
+            doc.setFont('helvetica', 'normal');
+            doc.text(condition, 50, 110);
+            
+            // Allergies if any
+            if (allergies) {
+                doc.setFont('helvetica', 'bold');
+                doc.text('Allergies:', 20, 120);
+                doc.setFont('helvetica', 'normal');
+                doc.text(allergies, 50, 120);
+            }
+            
+            // General instructions
+            doc.setFont('helvetica', 'bold');
+            doc.text('General Instructions:', 20, 140);
+            doc.setFont('helvetica', 'normal');
+            const splitIndications = doc.splitTextToSize(indications, 170);
+            doc.text(splitIndications, 20, 150);
+            
+            // Treatment
+            doc.setFont('helvetica', 'bold');
+            doc.text('Treatment:', 20, 170);
+            doc.setFont('helvetica', 'normal');
+            const splitTreatment = doc.splitTextToSize(treatment, 170);
+            doc.text(splitTreatment, 20, 180);
+            
+            // Footer
+            doc.setFontSize(10);
+            doc.setTextColor(100, 100, 100);
+            doc.text('Physician Signature: _________________________', 20, 260);
+            doc.text('Seal and Professional ID', 150, 260);
+            
+            // Save PDF
+            doc.save(`Prescription_${lastName}_${firstName}.pdf`);
+        }
+        
+        // Date formatting function
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', options);
+        }
+    </script>
+</body>
+</html>

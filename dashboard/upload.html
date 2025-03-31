@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Archivos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        
+        .upload-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 500px;
+        }
+        
+        .upload-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin-bottom: 20px;
+        }
+        
+        .upload-btn:hover {
+            background-color: #45a049;
+        }
+        
+        #fileInput {
+            display: none;
+        }
+        
+        .file-info {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px dashed #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        
+        .file-preview {
+            max-width: 100%;
+            max-height: 200px;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .status-message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .success {
+            background-color: #dff0d8;
+            color: #3c763d;
+        }
+        
+        .error {
+            background-color: #f2dede;
+            color: #a94442;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <h2>Subir Archivo</h2>
+        <p>Selecciona un archivo de tu computadora</p>
+        
+        <input type="file" id="fileInput">
+        <button class="upload-btn" onclick="document.getElementById('fileInput').click()">Seleccionar Archivo</button>
+        
+        <div id="fileInfo" class="file-info" style="display: none;">
+            <p><strong>Archivo seleccionado:</strong> <span id="fileName"></span></p>
+            <p><strong>Tamaño:</strong> <span id="fileSize"></span></p>
+            <p><strong>Tipo:</strong> <span id="fileType"></span></p>
+            <img id="filePreview" class="file-preview" alt="Vista previa">
+        </div>
+        
+        <button id="uploadBtn" class="upload-btn" style="display: none;">Subir Archivo</button>
+        
+        <div id="statusMessage" class="status-message" style="display: none;"></div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileName = document.getElementById('fileName');
+        const fileSize = document.getElementById('fileSize');
+        const fileType = document.getElementById('fileType');
+        const filePreview = document.getElementById('filePreview');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const statusMessage = document.getElementById('statusMessage');
+        
+        // Mostrar información del archivo cuando se selecciona
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            
+            if (file) {
+                // Mostrar información del archivo
+                fileName.textContent = file.name;
+                fileSize.textContent = formatFileSize(file.size);
+                fileType.textContent = file.type || 'Desconocido';
+                
+                // Mostrar vista previa si es una imagen
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        filePreview.src = e.target.result;
+                        filePreview.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    filePreview.style.display = 'none';
+                }
+                
+                // Mostrar sección de información y botón de subir
+                fileInfo.style.display = 'block';
+                uploadBtn.style.display = 'inline-block';
+                
+                // Resetear mensaje de estado
+                statusMessage.style.display = 'none';
+            }
+        });
+        
+        // Manejar la subida del archivo (simulada)
+        uploadBtn.addEventListener('click', function() {
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                showStatus('Por favor selecciona un archivo primero', 'error');
+                return;
+            }
+            
+            // Aquí normalmente enviarías el archivo a un servidor
+            // Pero como es local, solo simulamos la subida
+            
+            // Mostrar información sobre dónde está el archivo temporalmente
+            showStatus(`
+                <strong>Archivo cargado temporalmente:</strong><br>
+                Nombre: ${file.name}<br>
+                Ruta temporal: ${file.path || 'No disponible en navegador'}<br><br>
+                <small>Nota: En desarrollo local, el archivo solo existe en memoria hasta que lo subas a un servidor.</small>
+            `, 'success');
+            
+            // Para ver realmente dónde está almacenado temporalmente:
+            console.log('Archivo seleccionado:', file);
+        });
+        
+        // Función para formatear el tamaño del archivo
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        // Función para mostrar mensajes de estado
+        function showStatus(message, type) {
+            statusMessage.innerHTML = message;
+            statusMessage.className = 'status-message ' + type;
+            statusMessage.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
