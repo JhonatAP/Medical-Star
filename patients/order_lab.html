@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orden de Laboratorio</title>
+    <title>Laboratory Order</title>
     <style>
         * {
             margin: 0;
@@ -281,118 +281,118 @@
     </header>
     <div class="container">
         <div class="header-lab">
-            <h1>Orden de Laboratorio</h1>
-            <p>Complete los datos para solicitar estudios de laboratorio</p>
+            <h1>Laboratory Order</h1>
+            <p>Complete the form to request laboratory studies</p>
         </div>
         
         <form id="labOrderForm">
             <div class="form-row">
                 <div class="form-group">
-                    <label for="patientName" class="required">Nombre del Paciente</label>
+                    <label for="patientName" class="required">Patient Name</label>
                     <input type="text" id="patientName" required>
                 </div>
                 <div class="form-group">
-                    <label for="patientId" class="required">Identificación</label>
+                    <label for="patientId" class="required">Identification</label>
                     <input type="text" id="patientId" required>
                 </div>
             </div>
             
             <div class="form-row">
                 <div class="form-group">
-                    <label for="birthDate" class="required">Fecha de Nacimiento</label>
+                    <label for="birthDate" class="required">Date of Birth</label>
                     <input type="date" id="birthDate" required>
                 </div>
                 <div class="form-group">
-                    <label for="gender" class="required">Sexo</label>
+                    <label for="gender" class="required">Sex</label>
                     <select id="gender" required>
-                        <option value="">Seleccionar</option>
-                        <option value="Femenino">Femenino</option>
-                        <option value="Masculino">Masculino</option>
-                        <option value="Otro">Otro</option>
+                        <option value="">Select</option>
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Other">Other</option>
                     </select>
                 </div>
             </div>
             
             <div class="form-row">
                 <div class="form-group">
-                    <label for="orderDate" class="required">Fecha de Orden</label>
+                    <label for="orderDate" class="required">Order Date</label>
                     <input type="date" id="orderDate" required>
                 </div>
                 <div class="form-group">
-                    <label for="physician" class="required">Médico Solicitante</label>
+                    <label for="physician" class="required">Requesting Physician</label>
                     <input type="text" id="physician" required>
                 </div>
             </div>
             
             <div class="form-group">
-                <label class="required">Nivel de Urgencia</label>
+                <label class="required">Urgency Level</label>
                 <div class="urgency-level">
                     <div class="urgency-option">
-                        <label><input type="radio" name="urgency" value="Rutinario" checked> Rutinario</label>
+                        <label><input type="radio" name="urgency" value="Routine" checked> Routine</label>
                     </div>
                     <div class="urgency-option">
-                        <label><input type="radio" name="urgency" value="Urgente"> Urgente</label>
+                        <label><input type="radio" name="urgency" value="Urgent"> Urgent</label>
                     </div>
                     <div class="urgency-option">
-                        <label><input type="radio" name="urgency" value="Emergencia"> Emergencia</label>
+                        <label><input type="radio" name="urgency" value="Emergency"> Emergency</label>
                     </div>
                 </div>
             </div>
             
             <div class="form-group">
-                <label for="reason" class="required">Razón del Estudio/Diagnóstico Presuntivo</label>
-                <textarea id="reason" required placeholder="Describa la razón por la cual solicita los estudios..."></textarea>
+                <label for="reason" class="required">Reason for Study/Presumptive Diagnosis</label>
+                <textarea id="reason" required placeholder="Describe the reason for requesting the studies..."></textarea>
             </div>
             
             <div class="form-group">
-                <label class="required">Tipo de Análisis Requerido</label>
+                <label class="required">Required Test Type</label>
                 <div class="test-options">
                     <div class="test-option">
-                        <label><input type="checkbox" name="tests" value="Hemograma completo"> Hemograma completo</label>
+                        <label><input type="checkbox" name="tests" value="Complete Blood Count"> Complete Blood Count</label>
                     </div>
                     <div class="test-option">
-                        <label><input type="checkbox" name="tests" value="Química sanguínea"> Química sanguínea</label>
+                        <label><input type="checkbox" name="tests" value="Blood Chemistry"> Blood Chemistry</label>
                     </div>
                     <div class="test-option">
-                        <label><input type="checkbox" name="tests" value="Perfil lipídico"> Perfil lipídico</label>
+                        <label><input type="checkbox" name="tests" value="Lipid Profile"> Lipid Profile</label>
                     </div>
                     <div class="test-option">
-                        <label><input type="checkbox" name="tests" value="Pruebas de función hepática"> Pruebas de función hepática</label>
+                        <label><input type="checkbox" name="tests" value="Liver Function Tests"> Liver Function Tests</label>
                     </div>
                     <div class="test-option">
-                        <label><input type="checkbox" name="tests" value="Pruebas de función renal"> Pruebas de función renal</label>
+                        <label><input type="checkbox" name="tests" value="Renal Function Tests"> Renal Function Tests</label>
                     </div>
                     <div class="test-option">
-                        <label><input type="checkbox" name="tests" value="Examen general de orina"> Examen general de orina</label>
+                        <label><input type="checkbox" name="tests" value="General Urinalysis"> General Urinalysis</label>
                     </div>
                     <div class="test-option">
-                        <label><input type="checkbox" name="tests" value="Cultivo y antibiograma"> Cultivo y antibiograma</label>
+                        <label><input type="checkbox" name="tests" value="Culture and Sensitivity"> Culture and Sensitivity</label>
                     </div>
                     <div class="test-option">
-                        <label><input type="checkbox" name="tests" value="Pruebas de coagulación"> Pruebas de coagulación</label>
+                        <label><input type="checkbox" name="tests" value="Coagulation Tests"> Coagulation Tests</label>
                     </div>
                     <div class="test-option">
-                        <label><input type="checkbox" name="tests" value="Marcadores tumorales"> Marcadores tumorales</label>
+                        <label><input type="checkbox" name="tests" value="Tumor Markers"> Tumor Markers</label>
                     </div>
                     <div class="test-option">
-                        <label><input type="checkbox" name="tests" value="Pruebas tiroideas"> Pruebas tiroideas</label>
+                        <label><input type="checkbox" name="tests" value="Thyroid Tests"> Thyroid Tests</label>
                     </div>
                     <div class="test-option">
-                        <label><input type="checkbox" name="tests" value="Serología"> Serología</label>
+                        <label><input type="checkbox" name="tests" value="Serology"> Serology</label>
                     </div>
                     <div class="test-option">
-                        <label><input type="checkbox" name="tests" value="Otro"> Otro (especificar)</label>
+                        <label><input type="checkbox" name="tests" value="Other"> Other (specify)</label>
                         <input type="text" id="otherTest" style="margin-top: 5px; width: 100%; display: none;">
                     </div>
                 </div>
             </div>
             
             <div class="form-group">
-                <label for="instructions">Instrucciones Especiales</label>
-                <textarea id="instructions" placeholder="Indicaciones especiales para el laboratorio..."></textarea>
+                <label for="instructions">Special Instructions</label>
+                <textarea id="instructions" placeholder="Special instructions for the laboratory..."></textarea>
             </div>
             
-            <button type="button" class="btn" onclick="generateLabOrder()">Generar Orden de Laboratorio</button>
+            <button type="button" class="btn" onclick="generateLabOrder()">Generate Laboratory Order</button>
         </form>
     </div>
 
@@ -428,7 +428,7 @@
             
             // Validación básica
             if (!patientName || !patientId || !birthDate || !gender || !orderDate || !physician || !reason || selectedTests.length === 0) {
-                alert("Por favor complete todos los campos requeridos");
+                alert("Please complete all required fields");
                 return;
             }
             
@@ -440,11 +440,11 @@
             doc.setFontSize(18);
             doc.setTextColor(40, 40, 40);
             doc.setFont('helvetica', 'bold');
-            doc.text('ORDEN DE LABORATORIO', 105, 20, { align: 'center' });
+            doc.text('LABORATORY ORDER', 105, 20, { align: 'center' });
             
             doc.setFontSize(10);
             doc.setFont('helvetica', 'normal');
-            doc.text('Clínica Especializada - Tel: 555-1000', 105, 28, { align: 'center' });
+            doc.text('Specialized Clinic - Tel: 555-1000', 105, 28, { align: 'center' });
             
             // Línea divisoria
             doc.setDrawColor(200, 200, 200);
@@ -454,25 +454,25 @@
             doc.setFontSize(12);
             doc.setTextColor(0, 0, 0);
             
-            doc.text(`Paciente: ${patientName}`, 20, 45);
-            doc.text(`Identificación: ${patientId}`, 20, 55);
-            doc.text(`Fecha Nacimiento: ${formatDate(birthDate)}`, 20, 65);
-            doc.text(`Sexo: ${gender}`, 20, 75);
+            doc.text(`Patient: ${patientName}`, 20, 45);
+            doc.text(`Identification: ${patientId}`, 20, 55);
+            doc.text(`Date of Birth: ${formatDate(birthDate)}`, 20, 65);
+            doc.text(`Sex: ${gender}`, 20, 75);
             
-            doc.text(`Fecha Orden: ${formatDate(orderDate)}`, 120, 45);
-            doc.text(`Médico: Dr. ${physician}`, 120, 55);
-            doc.text(`Urgencia: ${urgency}`, 120, 65);
+            doc.text(`Order Date: ${formatDate(orderDate)}`, 120, 45);
+            doc.text(`Physician: Dr. ${physician}`, 120, 55);
+            doc.text(`Urgency: ${urgency}`, 120, 65);
             
             // Razón del estudio
             doc.setFont('helvetica', 'bold');
-            doc.text('Razón del Estudio/Diagnóstico Presuntivo:', 20, 90);
+            doc.text('Reason for Study/Presumptive Diagnosis:', 20, 90);
             doc.setFont('helvetica', 'normal');
             const splitReason = doc.splitTextToSize(reason, 170);
             doc.text(splitReason, 20, 100);
             
             // Pruebas solicitadas
             doc.setFont('helvetica', 'bold');
-            doc.text('Pruebas Solicitadas:', 20, 130);
+            doc.text('Requested Tests:', 20, 130);
             doc.setFont('helvetica', 'normal');
             
             let yPosition = 140;
@@ -484,7 +484,7 @@
             // Instrucciones especiales si existen
             if (instructions) {
                 doc.setFont('helvetica', 'bold');
-                doc.text('Instrucciones Especiales:', 20, yPosition + 10);
+                doc.text('Special Instructions:', 20, yPosition + 10);
                 doc.setFont('helvetica', 'normal');
                 const splitInstructions = doc.splitTextToSize(instructions, 170);
                 doc.text(splitInstructions, 20, yPosition + 20);
@@ -493,8 +493,8 @@
             // Pie de página
             doc.setFontSize(10);
             doc.setTextColor(100, 100, 100);
-            doc.text('Firma y Sello del Médico: _________________________', 20, 280);
-            doc.text('Cédula Profesional: _______________________________', 120, 280);
+            doc.text('Physician Signature and Stamp: _________________________', 20, 280);
+            doc.text('Professional License: _______________________________', 120, 280);
             
             // Guardar PDF
             doc.save(`Orden_Laboratorio_${patientName.replace(/ /g, '_')}.pdf`);
